@@ -1,6 +1,34 @@
 <%- include('../partials/header.ejs') %>
 
-<h1>Hello</h1>
+<h1>Short Stuff</h1>
 
+<form onsubmit="onSubmit">
+  <input placeholder="shorten url here" type="text" name="url" id="url" />
+  <button>Shorten It!</button>
+  <div id="shortenUrl"></div>
+</form>
+
+
+<script>
+  const shortenUrl = document.getElementById('shortenUrl');
+  const form = document.querySelector('form');
+  form.addEventListener('submit', onSubmit);
+  function onSubmit(e) {
+    e.preventDefault();
+    const url = document.getElementById('url').value;
+    fetch('/shorten', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify({ url })
+    }).then((response) => {
+      return response.json();
+    }).then((result) => {
+      shortenUrl.innerHTML = result.shortenedURL;
+    })
+  }
+
+</script>
 </body>
 </html>
