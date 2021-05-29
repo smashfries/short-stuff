@@ -24,6 +24,7 @@ const Url = mongoose.model('Url', urlSchema);
 
 const app = express();
 app.use(bodyParser.json());
+app.use(express.static('public'))
 // app.use(bodyParser.urlencoded({ extended: false}));
 app.set('view engine', 'ejs');
 

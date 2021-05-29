@@ -5,30 +5,11 @@
 <form onsubmit="onSubmit">
   <input placeholder="shorten url here" type="text" name="url" id="url" />
   <button>Shorten It!</button>
-  <div id="shortenUrl"></div>
 </form>
 
+<div id="shortenUrl"></div>
 
-<script>
-  const shortenUrl = document.getElementById('shortenUrl');
-  const form = document.querySelector('form');
-  form.addEventListener('submit', onSubmit);
-  function onSubmit(e) {
-    e.preventDefault();
-    const url = document.getElementById('url').value;
-    fetch('/shorten', {
-      method: 'POST',
-      headers: {
-        'content-type': 'application/json'
-      },
-      body: JSON.stringify({ url })
-    }).then((response) => {
-      return response.json();
-    }).then((result) => {
-      shortenUrl.innerHTML = result.shortenedURL;
-    })
-  }
 
-</script>
+<script src="/script.js"></script>
 </body>
 </html>
