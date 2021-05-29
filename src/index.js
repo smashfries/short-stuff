@@ -1,31 +1,14 @@
 const express = require('express');
-const bodyParser = require('body-parser');
-const ejs = require('ejs');
-const mongoose = require('mongoose');
+require('../db/mongoose')
 const nanoid = require('nanoid');
 const validUrl = require('valid-url');
-require('dotenv').config();
+const { UrlModel } = require('../models/urlModel')
 
-mongoose.connect(process.env.MONGODB_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
-
-const db = mongoose.connection;
-
-const urlSchema = new mongoose.Schema({
-  longUrl: String,
-  shortUrl: String,
-  userId: String,
-  clicks: Number,
-});
-
-const Url = mongoose.model('Url', urlSchema);
+const Url = UrlModel;
 
 const app = express();
-app.use(bodyParser.json());
+app.use(express.json())
 app.use(express.static('public'))
-// app.use(bodyParser.urlencoded({ extended: false}));
 app.set('view engine', 'ejs');
 
 app.get('/', (req, res) => {
@@ -44,7 +27,7 @@ app.post('/shorten', (req, res) => {
         userId: '00000',
         clicks: 0,
       })
-        .save()
+        newUrl.save()
         .then((_) => {
           res.send({
             originalURL: req.body.url,
