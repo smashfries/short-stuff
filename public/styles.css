@@ -1,0 +1,132 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+  width: 1000px;
+  margin: auto;
+}
+
+header img {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  margin-right: 60px;
+}
+
+header a {
+  text-decoration: none;
+  color: hsl(0, 0%, 60%);
+  transition: 0.2s;
+  margin-right: 20px;
+  font-weight: 500;
+}
+
+.right-a {
+  float: right;
+  margin-top: 54px;
+}
+
+.accent-btn {
+  background-color: hsl(180, 66%, 49%);
+  color: white;
+  padding-left: 22px;
+  padding-right: 22px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  transition: 0.2s;
+  border-radius: 20px;
+  text-decoration: none;
+}
+
+.accent-btn:hover {
+  background-color: hsl(180, 77%, 66%);
+  color: white;
+}
+
+.signup {
+  margin-right: 0;
+  margin-top: 45px !important;
+}
+
+header a:hover {
+  color: black;
+}
+
+header .nav-item {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.row {
+  width: 100%;
+  column-count: 2;
+  column-gap: 0;
+}
+
+.col {
+  height: 350px;
+  /* padding-left: 300px; */
+}
+
+.title {
+  font-weight: 700;
+  font-size: 64px;
+  color: hsl(255, 11%, 22%);
+  line-height: 72px;
+  margin-bottom: 0px;
+}
+
+.subtitle {
+  color: hsl(257, 7%, 63%);
+  margin-bottom: 40px;
+}
+
+.col img {
+  width: 300px;
+}
+
+.img-col {
+  padding-top: 50px;
+  text-align: center;
+  padding-left: 0px !important;
+}
+
+.call-btn {
+  padding-left: 25px !important;
+  padding-right: 25px !important;
+  padding-top: 12px !important;
+  padding-bottom: 12px !important;
+  border-radius: 50px !important;
+}
+
+form {
+  width: 100%;
+  margin-top: 50px;
+  background-color: hsl(257, 27%, 26%);
+  border-radius: 7px;
+  font-family: "Poppins", sans-serif;
+}
+
+input {
+  margin: 35px;
+  padding: 15px;
+  padding-right: 0px;
+  width: 740px;
+  border-radius: 7px;
+  border: none;
+  outline: none;
+  font-family: inherit;
+}
+
+form button {
+  font-size: 16px;
+  border-radius: 7px !important;
+  outline: none;
+  border: none;
+  padding-top: 12px !important;
+  padding-bottom: 12px !important;
+  padding-left: 35px !important;
+  padding-right: 35px !important;
+  font-family: inherit;
+  cursor: pointer;
+}

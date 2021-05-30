@@ -10,11 +10,11 @@ require("./db/mongoose");
 const { UrlModel } = require("./models/urlModel");
 const { UserModel } = require("./models/userModel");
 
+const port = 3000 || process.env.PORT;
+
 const limiter = new RateLimit({
   store: new MongoStore({
     uri: process.env.MONGODB_URI,
-    // user: "mongouser",
-    // password: "mongopassword",
     expireTimeMs: 10000,
     errorHandler: console.error.bind(null, "rate-limit-mongo"),
   }),
@@ -273,6 +273,6 @@ app.get("/:id", (req, res) => {
   );
 });
 
-app.listen(3000 || process.env.PORT, () => {
-  console.log("App running on port 3000");
+app.listen(port, () => {
+  console.log(`App running on port ${port}`);
 });
