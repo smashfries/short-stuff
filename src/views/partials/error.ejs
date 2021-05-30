@@ -1,0 +1,10 @@
+<div class="error" id="error"></div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function (event) {
+    const error = document.location.search.split("=")[1];
+    if (error) {
+      document.getElementById("error").innerHTML = error;
+    }
+  });
+</script>

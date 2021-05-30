@@ -2,18 +2,13 @@
 
 <h1>Login</h1>
 
-<div class="error" id="error"></div>
+<%- include('../partials/error.ejs') %>
+
 <form action="/login" method="POST">
     <input type="email" name="email" required placeholder="Email">
     <input type="password" name="password" placeholder="Password">
     <input type="submit" value="Login">
 </form>
 
-<script>
-    const error = document.location.search.split('=')[1];
-    if (error) {
-        document.getElementById('error').innerHTML = error;
-    }
-</script>
 </body>
 </html>

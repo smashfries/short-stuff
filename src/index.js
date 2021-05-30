@@ -125,13 +125,13 @@ app.post("/signup", async (req, res) => {
     const confirmPassword = req.body.confirm;
 
     if (!email) {
-      res.redirect("/signup");
+      res.redirect("/signup?error=Wrong");
     } else if (!password) {
-      res.redirect("/signup");
+      res.redirect("/signup?error=Wrong");
     } else if (password.length < 8) {
-      res.redirect("/signup");
+      res.redirect("/signup?error=Wrong");
     } else if (!confirmPassword) {
-      res.redirect("/signup");
+      res.redirect("/signup?error=Wrong");
     } else if (!emailRegexp.test(email)) {
       res.redirect("/signup?error=Wrong");
     } else {
