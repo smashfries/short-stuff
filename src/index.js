@@ -4,9 +4,23 @@ const validUrl = require("valid-url");
 const cookieParser = require("cookie-parser");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const RateLimit = require("express-rate-limit");
+const MongoStore = require("rate-limit-mongo");
 require("./db/mongoose");
 const { UrlModel } = require("./models/urlModel");
 const { UserModel } = require("./models/userModel");
+
+const limiter = new RateLimit({
+  store: new MongoStore({
+    uri: process.env.MONGODB_URI,
+    // user: "mongouser",
+    // password: "mongopassword",
+    expireTimeMs: 1000,
+    errorHandler: console.error.bind(null, "rate-limit-mongo"),
+  }),
+  max: 5,
+  windowMs: 1000,
+});
 
 const Url = UrlModel;
 const User = UserModel;
@@ -20,6 +34,7 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static("public"));
+app.use(limiter);
 app.set("view engine", "ejs");
 app.set("views", "./src/views");
 
