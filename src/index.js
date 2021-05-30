@@ -4,9 +4,9 @@ const validUrl = require("valid-url");
 const cookieParser = require("cookie-parser");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-require("../db/mongoose");
-const { UrlModel } = require("../models/urlModel");
-const { UserModel } = require("../models/userModel");
+require("./db/mongoose");
+const { UrlModel } = require("./models/urlModel");
+const { UserModel } = require("./models/userModel");
 
 const Url = UrlModel;
 const User = UserModel;
@@ -21,6 +21,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static("public"));
 app.set("view engine", "ejs");
+app.set("views", "./src/views");
 
 app.get("/", (req, res) => {
   if (req.cookies.user) {
@@ -194,8 +195,8 @@ app.post("/logout", async (req, res) => {
 app.post("/shorten", (req, res) => {
   if (req.body.url) {
     if (validUrl.isUri(req.body.url)) {
-      const uid = nanoid.nanoid(8);
-      const url = "http://localhost:3000/u/" + uid;
+      const uid = nanoid.nanoid(6);
+      const url = "http://localhost:3000/" + uid;
       const newUrl = new Url({
         longUrl: req.body.url,
         shortUrl: url,
@@ -229,9 +230,9 @@ app.post("/shorten", (req, res) => {
 });
 
 // Redirect endpoint (short to long url)
-app.get("/u/:id", (req, res) => {
+app.get("/:id", (req, res) => {
   Url.findOne(
-    { shortUrl: "http://localhost:3000/u/" + req.params.id },
+    { shortUrl: "http://localhost:3000/" + req.params.id },
     (err, url) => {
       if (err) {
         res.send("Server error");
@@ -239,7 +240,7 @@ app.get("/u/:id", (req, res) => {
         res.send("Invalid URL");
       } else {
         Url.findOneAndUpdate(
-          { shortUrl: "http://localhost:3000/u/" + req.params.id },
+          { shortUrl: "http://localhost:3000/" + req.params.id },
           { clicks: url.clicks + 1 },
           { useFindAndModify: false },
           (err, _) => {
