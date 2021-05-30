@@ -15,11 +15,11 @@ const limiter = new RateLimit({
     uri: process.env.MONGODB_URI,
     // user: "mongouser",
     // password: "mongopassword",
-    expireTimeMs: 1000,
+    expireTimeMs: 10000,
     errorHandler: console.error.bind(null, "rate-limit-mongo"),
   }),
-  max: 5,
-  windowMs: 1000,
+  max: 30,
+  windowMs: 2000,
 });
 
 const Url = UrlModel;
@@ -216,7 +216,7 @@ app.post("/shorten", (req, res) => {
         longUrl: req.body.url,
         shortUrl: url,
         userId: "00000",
-        clicks: 0,
+        ips: [],
       });
       newUrl
         .save()
@@ -254,9 +254,11 @@ app.get("/:id", (req, res) => {
       } else if (!url) {
         res.send("Invalid URL");
       } else {
+        const ips = url.ips;
+        ips.push(req.ip);
         Url.findOneAndUpdate(
           { shortUrl: "http://localhost:3000/" + req.params.id },
-          { clicks: url.clicks + 1 },
+          { ips },
           { useFindAndModify: false },
           (err, _) => {
             if (err) {
@@ -271,6 +273,6 @@ app.get("/:id", (req, res) => {
   );
 });
 
-app.listen(3000, () => {
+app.listen(3000 || process.env.PORT, () => {
   console.log("App running on port 3000");
 });
