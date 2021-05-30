@@ -130,3 +130,7 @@ form button {
   font-family: inherit;
   cursor: pointer;
 }
+
+.error {
+  color: red;
+}
