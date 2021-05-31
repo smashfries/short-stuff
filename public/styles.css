@@ -10,7 +10,7 @@ body {
 header img {
   margin-top: 50px;
   margin-bottom: 50px;
-  margin-right: 60px;
+  margin-right: 40px;
 }
 
 header a {
@@ -19,6 +19,10 @@ header a {
   transition: 0.2s;
   margin-right: 20px;
   font-weight: 500;
+}
+
+.brand-a {
+  margin-right: 0 !important;
 }
 
 .right-a {
@@ -133,4 +137,13 @@ form button {
 
 .error {
   color: red;
+}
+
+#shortenUrl {
+  width: 100%;
+}
+
+.url-div {
+  width: 100%;
+  background-color: gray;
 }
