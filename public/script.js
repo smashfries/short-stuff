@@ -1,3 +1,7 @@
+function truncate(str, n) {
+  return str.length > n ? str.substr(0, n - 1) + "&hellip;" : str;
+}
+
 function selectText(node) {
   node = node;
 
@@ -18,15 +22,21 @@ function selectText(node) {
 
 document.querySelector("body").addEventListener("click", (e) => {
   if (e.target.className == "copy-btn") {
+    e.target.innerHTML = "Copied!";
+    e.target.style.backgroundColor = "hsl(257, 27%, 26%)";
+    setTimeout(() => {
+      e.target.innerHTML = "Copy";
+      e.target.style.backgroundColor = "hsl(180, 66%, 49%)";
+    }, 3000);
     console.log("copy button clicked");
-    let text = e.target.previousSibling;
-    // text.setSelectionRange(0, 99999)
+    let text = e.target.nextSibling.firstChild;
+    // text.setSelectionRange(0, 99999);
     selectText(text);
     document.execCommand("copy");
   }
 });
 
-const shortenUrl = document.getElementById("shortenUrl");
+const shortenUrl = document.getElementById("shortUrl");
 const form = document.querySelector("form");
 form.addEventListener("submit", onSubmit);
 function onSubmit(e) {
@@ -47,12 +57,23 @@ function onSubmit(e) {
       let urlDiv = document.createElement("div");
       urlDiv.className = "url-div";
       let shortUrl = document.createElement("span");
+      let shortUrlA = document.createElement("a");
+      shortUrlA.setAttribute("href", result.shortenedURL);
+      shortUrlA.setAttribute("target", "_blank");
+      let longUrl = document.createElement("span");
       let copyButton = document.createElement("button");
       copyButton.innerText = "Copy";
       copyButton.className = "copy-btn";
-      urlDiv.appendChild(shortUrl);
       urlDiv.appendChild(copyButton);
-      document.querySelector("#shortenUrl").appendChild(urlDiv);
-      shortUrl.innerHTML = result.shortenedURL;
+      urlDiv.appendChild(shortUrl);
+      shortUrl.appendChild(shortUrlA);
+      urlDiv.appendChild(longUrl);
+      shortUrl.className = "short-url";
+      longUrl.className = "long-url";
+      longUrl.innerHTML = truncate(document.getElementById("url").value, 40);
+      shortUrl.style.float = "right";
+      copyButton.style.float = "right";
+      document.querySelector("#shortUrl").appendChild(urlDiv);
+      shortUrlA.innerHTML = result.shortenedURL;
     });
 }

@@ -140,10 +140,52 @@ form button {
 }
 
 #shortenUrl {
-  width: 100%;
+  width: 100vw;
+  position: absolute;
+  top: 650px;
+  left: 0;
+  padding-top: 85px;
+  padding-bottom: 20px;
+  background-color: rgb(240 241 246);
+  z-index: -1;
 }
 
 .url-div {
-  width: 100%;
-  background-color: gray;
+  width: 969px;
+  margin: auto;
+  background-color: white;
+  border-radius: 7px;
+  padding: 17px;
+  margin-bottom: 15px;
+}
+
+.long-url {
+  width: 50px;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+}
+
+.short-url {
+  color: hsl(180, 77%, 66%);
+}
+
+.short-url a {
+  text-decoration: none;
+  color: rgb(95 203 196);
+  cursor: pointer;
+}
+
+.copy-btn {
+  width: 114px;
+  font-family: inherit;
+  background-color: hsl(180, 77%, 66%);
+  border: none;
+  outline: none;
+  color: white;
+  font-size: 15px;
+  border-radius: 7px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-top: -4px;
+  margin-left: 20px;
 }
