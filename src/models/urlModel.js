@@ -4,7 +4,12 @@ const urlSchema = new mongoose.Schema({
   longUrl: String,
   shortUrl: String,
   userId: String,
-  ips: [String],
+  clicks: [
+    {
+      ip: String,
+      timestamp: Date,
+    },
+  ],
 });
 
 const UrlModel = mongoose.model("Url", urlSchema);

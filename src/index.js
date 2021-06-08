@@ -216,7 +216,7 @@ app.post("/shorten", (req, res) => {
         longUrl: req.body.url,
         shortUrl: url,
         userId: "00000",
-        ips: [],
+        clicks: [],
       });
       newUrl
         .save()
@@ -254,11 +254,14 @@ app.get("/:id", (req, res) => {
       } else if (!url) {
         res.send("Invalid URL");
       } else {
-        const ips = url.ips;
-        ips.push(req.ip);
+        let clicks = url.clicks;
+        if (!clicks) {
+          clicks = [];
+        }
+        clicks.push({ ip: req.ip, timestamp: new Date() });
         Url.findOneAndUpdate(
           { shortUrl: "http://localhost:3000/" + req.params.id },
-          { ips },
+          { clicks },
           { useFindAndModify: false },
           (err, _) => {
             if (err) {
