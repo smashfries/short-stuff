@@ -5,6 +5,7 @@ body {
   font-family: "Poppins", sans-serif;
   width: 1000px;
   margin: auto;
+  overflow-x: hidden;
 }
 
 header img {
@@ -188,4 +189,71 @@ form button {
   padding-bottom: 5px;
   margin-top: -4px;
   margin-left: 20px;
+}
+
+.features {
+  width: 1000px;
+  margin: auto;
+  text-align: center;
+}
+
+h2 {
+  color: hsl(255, 11%, 22%);
+  font-size: 42px;
+  margin-bottom: 14px;
+  margin-top: 48px;
+  font-weight: 700;
+}
+
+h3 {
+  color: hsl(255, 11%, 22%);
+  font-size: 20px;
+  font-weight: 700;
+  text-align: left;
+}
+
+h5 {
+  font-weight: 500;
+  width: 700px;
+  margin: auto;
+  text-align: center;
+  color: hsl(0, 0%, 60%);
+  line-height: 27px;
+  font-size: 15px;
+}
+
+.feature-row {
+  margin-top: 50px;
+  width: 100%;
+  display: flex;
+}
+
+.feat-col {
+  flex-grow: 1;
+  width: 100%;
+  align-self: flex-start;
+  height: auto;
+  margin-left: 15px;
+  margin-right: 15px;
+  padding: 20px;
+  -webkit-box-shadow: 1px 1px 22px -2px rgba(148, 146, 148, 0.86);
+  -moz-box-shadow: 1px 1px 22px -2px rgba(148, 146, 148, 0.86);
+  box-shadow: 1px 1px 22px -2px rgba(148, 146, 148, 0.86);
+  border-radius: 7px;
+  background-color: white;
+}
+
+.feat-col-2 {
+  margin-top: 20px;
+}
+
+.feat-col-3 {
+  margin-top: 40px;
+}
+
+.feat-text {
+  color: hsl(257, 7%, 63%);
+  text-align: left;
+  font-size: 14px;
+  font-weight: 500;
 }
