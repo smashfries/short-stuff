@@ -5,7 +5,6 @@ body {
   font-family: "Poppins", sans-serif;
   width: 1000px;
   margin: auto;
-  overflow-x: hidden;
 }
 
 header img {
@@ -70,7 +69,6 @@ header .nav-item {
 
 .col {
   height: 350px;
-  /* padding-left: 300px; */
 }
 
 .title {
@@ -141,7 +139,7 @@ form button {
 }
 
 #shortenUrl {
-  width: 100vw;
+  width: 100%;
   position: absolute;
   top: 650px;
   left: 0;
